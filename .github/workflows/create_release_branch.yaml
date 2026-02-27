@@ -35,15 +35,15 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: "Read version"
-        id: extract-version
-        uses: ./.github/actions/extract_version
+        id: read-version
+        uses: ./.github/actions/read_version
 
       - name: Calculate new version
         id: bump-version
         run: |
-          MAJOR=${{ needs.extract-version.outputs.major }}
-          MINOR=${{ needs.extract-version.outputs.minor }}
-          PATCH=${{ needs.extract-version.outputs.patch }}
+          MAJOR=${{ steps.read-version.outputs.major }}
+          MINOR=${{ steps.read-version.outputs.minor }}
+          PATCH=${{ steps.read-version.outputs.patch }}
 
           case "${{ github.event.inputs.bump }}" in
             major)
