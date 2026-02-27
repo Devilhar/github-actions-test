@@ -96,8 +96,9 @@ jobs:
       - name: Commit and push
         run: |
           git add '${{ env.version-file }}'
-          git add '${{ env.changelog-file }}'
           git commit -m "Bumped version to ${{ steps.bump-version.outputs.version }}"
+          git add '${{ env.changelog-file }}'
+          git commit -m "Added current version, date, and header to changelog.txt"
           git push --set-upstream origin "release/${{ steps.bump-version.outputs.version }}"
 
       - name: Create pull request
