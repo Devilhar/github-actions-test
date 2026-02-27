@@ -20,7 +20,7 @@ runs:
       id: read-version
       uses: ./.github/actions/read_version
       with:
-        version-file-path: '${{ input.version-file-path }}'
+        version-file-path: '${{ inputs.version-file-path }}'
 
     - name: Build
       id: build
