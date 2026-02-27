@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  version-file: "${{ github.workspace }}/folder/info.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "Read version"
+        id: read-version
+        uses: ./.github/actions/read_version
+        with:
+          version-file-path: '${{ env.version-file }}'
+
+      - name: Build
+        id: build
+        run: |
+          ZIP_FILE=$(py deploy.py out/ --echo_file)
+          echo "zip_file=$ZIP_FILE" >> $GITHUB_OUTPUT
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-zip
+          path: ${{ steps.build.outputs.zip_file }}
+          if-no-files-found: error
