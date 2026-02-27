@@ -31,7 +31,7 @@ jobs:
       - name: Build
         id: build
         run: |
-          ZIP_FILE=$(py deploy.py out/ --echo_file)
+          ZIP_FILE=$(python deploy.py out/ --echo_file)
           echo "zip_file=$ZIP_FILE" >> $GITHUB_OUTPUT
 
       - name: Upload artifact
