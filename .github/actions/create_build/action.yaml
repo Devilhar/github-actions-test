@@ -24,5 +24,6 @@ runs:
 
     - name: Build
       id: build
+      shell: bash
       run: |
         echo "build_path=$(python deploy.py out/ --echo_file)" >> $GITHUB_OUTPUT
