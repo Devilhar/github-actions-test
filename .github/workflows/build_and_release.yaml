@@ -20,19 +20,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: "Create build"
+      - name: Create build
         id: create-build
         uses: ./.github/actions/create_build
         with:
           version-file-path: '${{ env.version-file }}'
 
-      - name: "Read changelog"
+      - name: Read changelog
         id: read-changelog
         uses: ./.github/actions/read_changelog
         with:
           changelog-file-path: '${{ env.changelog-file }}'
 
-      - name: "Create release"
+      - name: Create release
         id: create-release
         uses: ./.github/actions/create_release
         with:

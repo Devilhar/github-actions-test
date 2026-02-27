@@ -38,7 +38,7 @@ jobs:
           git config user.name "${{ env.github-author-name }}"
           git config user.email "${{ env.github-author-email }}"
 
-      - name: "Read version"
+      - name: Read version
         id: read-version
         uses: ./.github/actions/read_version
         with:
@@ -82,8 +82,7 @@ jobs:
           jq '.version = "${{ steps.bump-version.outputs.version }}"' '${{ env.version-file }}' > tmp.json
           mv tmp.json '${{ env.version-file }}'
 
-      - name: Read Changelog
-        id: read-changelog
+      - name: Update Changelog
         run: |
           {
               echo "---------------------------------------------------------------------------------------------------"
