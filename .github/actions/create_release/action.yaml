@@ -7,6 +7,9 @@ inputs:
   build-file-path:
     description: "File path to the build zip"
     required: true
+  changelog:
+    description: "The log for the changes included in this release"
+    required: true
 
 runs:
   using: "composite"
@@ -23,4 +26,4 @@ runs:
         gh release create "$TAG" \
           ${{ inputs.build-file-path }} \
           --title "$TAG" \
-          --notes "Release $TAG"
+          --notes "${{ inputs.changelog }}"
