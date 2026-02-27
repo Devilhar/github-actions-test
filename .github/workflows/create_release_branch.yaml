@@ -88,15 +88,15 @@ jobs:
           {
               echo "---------------------------------------------------------------------------------------------------"
               echo "Version: ${{ steps.bump-version.outputs.version }}"
-              echo "Date: $(date '%d.%m.%y')"
-              cat "${{ env.changelog-file-path }}"
+              echo "Date: $(date '+%d.%m.%y')"
+              cat "${{ env.changelog-file }}"
           } > "changelog.txt.tmp"
-          mv "changelog.txt.tmp" "${{ env.changelog-file-path }}"
+          mv "changelog.txt.tmp" "${{ env.changelog-file }}"
 
       - name: Commit and push
         run: |
           git add '${{ env.version-file }}'
-          git add '${{ env.changelog-file-path }}'
+          git add '${{ env.changelog-file }}'
           git commit -m "Bumped version to ${{ steps.bump-version.outputs.version }}"
           git push --set-upstream origin "release/${{ steps.bump-version.outputs.version }}"
 
