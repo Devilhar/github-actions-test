@@ -87,7 +87,7 @@ jobs:
           {
               echo "---------------------------------------------------------------------------------------------------"
               echo "Version: ${{ steps.bump-version.outputs.version }}"
-              echo "Date: $(date '+%d.%m.%y')"
+              echo "Date: $(date '+%d. %m. %Y')"
               cat "${{ env.changelog-file }}"
           } > "tmp.txt"
           mv "tmp.txt" "${{ env.changelog-file }}"
