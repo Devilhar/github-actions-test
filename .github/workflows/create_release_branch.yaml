@@ -39,6 +39,8 @@ jobs:
       - name: "Read version"
         id: read-version
         uses: ./.github/actions/read_version
+        with:
+          version-file-path: '${{ env.version-file }}'
 
       - name: Calculate new version
         id: bump-version
