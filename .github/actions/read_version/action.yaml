@@ -3,6 +3,7 @@ name: Read Version
 inputs:
   version-file-path:
     description: "Json file to be read from."
+    required: true
 
 outputs:
   major:

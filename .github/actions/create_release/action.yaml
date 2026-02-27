@@ -1,0 +1,24 @@
+name: Create GitHub Release
+
+inputs:
+  version:
+    description: "Version number (e.g. 1.2.3)"
+    required: true
+  build-file-path:
+    description: "File path to the build zip."
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Create Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        VERSION="${{ inputs.version }}"
+        TAG="v$VERSION"
+
+        gh release create "$TAG" \
+          ${{ inputs.build-file-path }} \
+          --title "$TAG" \
+          --notes "Release $TAG"
