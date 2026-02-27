@@ -1,8 +1,8 @@
-name: Extract Version
+name: Read Version
 
 inputs:
   version-file-path:
-    description: "File to be read from."
+    description: "Json file to be read from."
 
 outputs:
   major:
