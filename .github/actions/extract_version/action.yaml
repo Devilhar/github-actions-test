@@ -21,6 +21,7 @@ runs:
   steps:
     - name: Read version
       id: read_version
+      shell: bash
       run: |
         VERSION=$(jq -r '.version' '${{ inputs.version-file-path }}')
 
