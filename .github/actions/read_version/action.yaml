@@ -3,7 +3,6 @@ name: Extract Version
 inputs:
   version-file-path:
     description: "File to be read from."
-    default: "${{ github.workspace }}/folder/_info.json"
 
 outputs:
   major:
