@@ -52,10 +52,13 @@ jobs:
               PATCH=0
               ;;
             minor)
+              MAJOR=$((MAJOR))
               MINOR=$((MINOR + 1))
               PATCH=0
               ;;
             patch)
+              MAJOR=$((MAJOR))
+              MINOR=$((MINOR))
               PATCH=$((PATCH + 1))
               ;;
           esac
