@@ -85,3 +85,7 @@ jobs:
           git add '${{ env.version-file }}'
           git commit -m "Bumped version to ${{ steps.bump-version.outputs.version }}"
           git push --set-upstream origin "release/${{ steps.bump-version.outputs.version }}"
+
+      - name: Create pull request
+        run: |
+          gh pr create --title "Release ${{ steps.bump-version.outputs.version }}" --body "Release branch for ${{ steps.bump-version.outputs.version }}, should be merged once the release is published and the branch has been tagged."
