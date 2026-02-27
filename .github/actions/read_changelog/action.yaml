@@ -26,7 +26,6 @@ runs:
           { print }
         ' "$FILE")
 
-        # Preserve multiline output safely
         {
           echo "content<<EOF"
           echo "$CONTENT"

@@ -15,6 +15,7 @@ on:
 
 env:
   version-file: "${{ github.workspace }}/cargo-drone/info.json"
+  changelog-file: "${{ github.workspace }}/cargo-drone/changelog.txt"
   github-author-name: github-actions[bot]
   github-author-email: github-actions[bot]@users.noreply.github.com
 
@@ -81,9 +82,21 @@ jobs:
           jq '.version = "${{ steps.bump-version.outputs.version }}"' '${{ env.version-file }}' > tmp.json
           mv tmp.json '${{ env.version-file }}'
 
+      - name: Read Changelog
+        id: read-changelog
+        run: |
+          {
+              echo "---------------------------------------------------------------------------------------------------"
+              echo "Version: ${{ steps.bump-version.outputs.version }}"
+              echo "Date: $(date '%d.%m.%y')"
+              cat "${{ env.changelog-file-path }}"
+          } > "changelog.txt.tmp"
+          mv "changelog.txt.tmp" "${{ env.changelog-file-path }}"
+
       - name: Commit and push
         run: |
           git add '${{ env.version-file }}'
+          git add '${{ env.changelog-file-path }}'
           git commit -m "Bumped version to ${{ steps.bump-version.outputs.version }}"
           git push --set-upstream origin "release/${{ steps.bump-version.outputs.version }}"
 
