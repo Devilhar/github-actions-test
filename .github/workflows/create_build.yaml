@@ -2,9 +2,6 @@ name: Create Build
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 env:
   version-file: "${{ github.workspace }}/cargo-drone/info.json"
