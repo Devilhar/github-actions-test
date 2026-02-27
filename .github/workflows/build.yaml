@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  version-file: "${{ github.workspace }}/folder/info.json"
+  version-file: "${{ github.workspace }}/cargo-drone/info.json"
 
 jobs:
   build:

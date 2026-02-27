@@ -14,7 +14,7 @@ on:
         default: minor
 
 env:
-  version-file: "${{ github.workspace }}/folder/info.json"
+  version-file: "${{ github.workspace }}/cargo-drone/info.json"
   github-author-name: github-actions[bot]
   github-author-email: github-actions[bot]@users.noreply.github.com
 
